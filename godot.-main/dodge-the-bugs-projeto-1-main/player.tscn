@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bd7aoynlyyjtf"]
+
+[ext_resource type="Texture2D" uid="uid://cygv6va07a827" path="res://dodgethebugs-main/assets/player_idle-01.png" id="1_44wmy"]
+[ext_resource type="Texture2D" uid="uid://pprymfll6xm8" path="res://dodgethebugs-main/assets/player_idle-02.png" id="2_fuknt"]
+[ext_resource type="Texture2D" uid="uid://2hytw5mf332" path="res://dodgethebugs-main/assets/player_idle-03.png" id="3_t817b"]
+[ext_resource type="Texture2D" uid="uid://ders0i18yuvii" path="res://dodgethebugs-main/assets/player_move-01.png" id="4_c5os3"]
+[ext_resource type="Texture2D" uid="uid://ddhvkm02crdyg" path="res://dodgethebugs-main/assets/player_move-02.png" id="5_urge4"]
+[ext_resource type="Texture2D" uid="uid://suwb8m78h7ty" path="res://dodgethebugs-main/assets/player_down-01.png" id="6_tvi53"]
+[ext_resource type="Texture2D" uid="uid://h272s26e08hc" path="res://dodgethebugs-main/assets/player_down-02.png" id="7_r0rk1"]
+[ext_resource type="Script" path="res://scripts/Collision.gd" id="8_ol7et"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cyp7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_44wmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fuknt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t817b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5os3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_urge4")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tvi53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r0rk1")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5os3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_urge4")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hv6n4"]
+
+[node name="player" type="Area2D"]
+script = ExtResource("8_ol7et")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5cyp7")
+animation = &"move"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 9)
+shape = SubResource("CircleShape2D_hv6n4")
